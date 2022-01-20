@@ -4,6 +4,7 @@ require File.expand_path('../../config/environment', __FILE__)
 
 require 'factory_bot_rails'
 require 'webmock/rspec'
+require 'helpers'
 require 'shoulda/matchers'
 require 'pundit/rspec'
 
