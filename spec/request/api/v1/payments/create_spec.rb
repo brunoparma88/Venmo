@@ -1,8 +1,9 @@
 describe 'POST api/v1/user/{user_id}/payment', type: :request do
-  let(:payment) { build(:payment) }
+  let(:friendship) { create(:friendship) }
+  let(:payment) { build(:payment, user: friendship.user, friend: friendship.friend) }
 
   describe 'POST create' do
-    let(:user)        { payment.user }
+    let(:user) { payment.user }
     let(:friend)      { payment.friend }
     let(:amount)      { payment.amount }
     let(:description) { payment.description }
@@ -17,24 +18,31 @@ describe 'POST api/v1/user/{user_id}/payment', type: :request do
       }
     end
 
-    it 'returns a successful response' do
-      post api_v1_user_payments_path(user.id), params: params, as: :json
+    context 'with correct params' do
+      it 'creates the payment' do
+        expect {
+          post api_v1_user_payments_path(user.id), params: params, as: :json
+        }.to change(Payment, :count).by(1)
+      end
 
-      expect(response).to have_http_status(:success)
-    end
-
-    it 'creates the payment' do
-      expect {
+      it 'returns a successful response' do
         post api_v1_user_payments_path(user.id), params: params, as: :json
-      }.to change(Payment, :count).by(1)
-    end
+        expect(response).to have_http_status(:success)
+      end
 
-    it 'returns the payment' do
-      post api_v1_user_payments_path(user.id), params: params, as: :json
+      it 'returns the payment' do
+        post api_v1_user_payments_path(user.id), params: params, as: :json
 
-      expect(json[:payment][:friend_id]).to eq(payment.friend.id)
-      expect(json[:payment][:amount].to_d).to eq(payment.amount.to_d)
-      expect(json[:payment][:description]).to eq(payment.description)
+        expect(json[:payment][:friend_id]).to eq(payment.friend.id)
+        expect(json[:payment][:amount].to_d).to eq(payment.amount.to_d)
+        expect(json[:payment][:description]).to eq(payment.description)
+      end
+
+      it 'returns a successful response' do
+        post api_v1_user_payments_path(user.id), params: params, as: :json
+
+        expect(response).to have_http_status(:success)
+      end
     end
   end
 end

@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :friendship do
-    friend { create(:user) }
+    user { create(:user, :with_account) }
+    friend { create(:user, :with_account) }
   end
 end
