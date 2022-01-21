@@ -25,9 +25,11 @@ ActiveRecord::Schema.define(version: 2022_01_21_182502) do
 
   create_table "feeds", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "friend_id"
     t.string "description", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["friend_id"], name: "index_feeds_on_friend_id"
     t.index ["user_id"], name: "index_feeds_on_user_id"
   end
 

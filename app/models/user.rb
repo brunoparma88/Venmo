@@ -28,6 +28,6 @@ class User < ApplicationRecord
 
   def friendships?(friend)
     friendships_as_friend_a.where(friend_id: friend.id).present? ||
-      friendships_as_friend_b.where(user_id: id).present?
+      friendships_as_friend_b.where(user_id: friend.id).present?
   end
 end

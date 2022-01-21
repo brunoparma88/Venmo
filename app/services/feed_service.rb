@@ -6,17 +6,16 @@ class FeedService
   end
 
   def create_feed
-    add_users + add_time
+    add_users + add_time_description
   end
 
   private
 
   def add_users
-    @user.full_name + ' send ' + @payment.amount.to_s + ' to ' +
-      @friend.full_name
+    @user.full_name + ' paid ' + @friend.full_name
   end
 
-  def add_time
-    ' at ' + @payment.created_at.to_s
+  def add_time_description
+    ' at ' + @payment.created_at.to_s + ' - ' + @payment.description
   end
 end

@@ -26,9 +26,12 @@ module Api
 
       def send_money(amount)
         current_user_account = current_user.account
-        friend_account = friend.account
-        current_user_account.update!(balance: (current_user_account.balance - amount))
-        friend_account.update!(balance: (friend_account.balance + amount))
+        current_balance = current_user_account.balance
+        if current_balance < amount
+          MoneyTransferService.new(Object.new,
+                                   current_user_account).transfer(amount - current_balance)
+        end
+        update_accounts(amount)
       end
 
       def render_unapproved_contractor
@@ -40,7 +43,14 @@ module Api
 
       def create_feed
         feed = FeedService.new(@current_user, @friend, @payment).create_feed
-        current_user.feeds.create!(description: feed)
+        current_user.feeds.create!(description: feed, friend_id: @friend.id)
+      end
+
+      def update_accounts(amount)
+        current_user_account = current_user.account
+        friend_account = friend.account
+        current_user_account.update!(balance: (current_user_account.balance - amount))
+        friend_account.update!(balance: (friend_account.balance + amount))
       end
     end
   end

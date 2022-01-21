@@ -7,6 +7,7 @@ ruby '2.7.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+gem 'pagy', '~> 3.10'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.2.3'
 # Use Puma as the app server
