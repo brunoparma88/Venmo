@@ -2,7 +2,7 @@ module Api
   module V1
     class PaymentsController < ApplicationController
       def create
-        @payment = current_user.payment.create!(payment_params)
+        @payment = current_user.payments.create!(payment_params)
         render :show
       end
 
