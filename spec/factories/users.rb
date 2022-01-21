@@ -6,7 +6,14 @@ FactoryBot.define do
 
     trait :with_friend do
       after(:create) do |user|
-        create(:friendship, user: user)
+        friend = create(:user)
+        create(:friendship, friend: friend, user: user)
+      end
+    end
+
+    trait :with_account do
+      after(:create) do |user|
+        user.account ||= create(:account, user: user)
       end
     end
   end

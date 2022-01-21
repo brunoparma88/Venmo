@@ -1,0 +1,22 @@
+class FeedService
+  def initialize(user, friend, payment)
+    @user = user
+    @friend = friend
+    @payment = payment
+  end
+
+  def create_feed
+    add_users + add_time
+  end
+
+  private
+
+  def add_users
+    @user.full_name + ' send ' + @payment.amount.to_s + ' to ' +
+      @friend.full_name
+  end
+
+  def add_time
+    ' at ' + @payment.created_at.to_s
+  end
+end
