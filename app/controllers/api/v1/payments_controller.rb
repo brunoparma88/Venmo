@@ -4,8 +4,9 @@ module Api
       def create
         return render_unapproved_contractor unless current_user.friendships?(friend)
 
-        @payment = current_user.payment.create!(payment_params)
+        @payment = current_user.payments.create!(payment_params)
         send_money(payment_params[:amount].to_d)
+        create_feed
         render :show
       end
 
@@ -35,6 +36,11 @@ module Api
           status: :bad_request,
           json: { error: I18n.t('api.error.not_friend') }
         )
+      end
+
+      def create_feed
+        feed = FeedService.new(@current_user, @friend, @payment).create_feed
+        current_user.feeds.create!(description: feed)
       end
     end
   end

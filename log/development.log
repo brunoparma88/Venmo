@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 15:32:50 -0300
   [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
@@ -125,3 +126,438 @@ SystemExit (exit):
 (byebug):1:in `create_feed'
 app/controllers/api/v1/payments_controller.rb:37:in `create_feed'
 app/controllers/api/v1/payments_controller.rb:10:in `create'
+=======
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 11:20:44 -0300
+  [1m[35m (7.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PaymentsController#create as JSON
+  Parameters: {"payment"=>{"friend_id"=>1, "amount"=>880, "description"=>"aca no paso nada"}, "user_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:16:in `current_user'
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 7.8ms | Allocations: 11159)
+
+
+  
+NoMethodError (undefined method `payment' for #<User:0x000000015964e290>
+Did you mean?  payments
+               payments=):
+  
+app/controllers/api/v1/payments_controller.rb:5:in `create'
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 11:20:58 -0300
+Processing by Api::V1::PaymentsController#create as JSON
+  Parameters: {"payment"=>{"friend_id"=>1, "amount"=>880, "description"=>"aca no paso nada"}, "user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:5:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 31ms (ActiveRecord: 9.9ms | Allocations: 17504)
+
+
+  
+ActiveRecord::RecordInvalid (Validation failed: Account You cannot transfer money to your account.):
+  
+app/controllers/api/v1/payments_controller.rb:5:in `create'
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 11:21:06 -0300
+Processing by Api::V1::PaymentsController#create as JSON
+  Parameters: {"payment"=>{"friend_id"=>2, "amount"=>880, "description"=>"aca no paso nada"}, "user_id"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:5:in `create'
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:5:in `create'
+  [1m[36mPayment Create (2.9ms)[0m  [1m[32mINSERT INTO "payments" ("user_id", "friend_id", "description", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["friend_id", 2], ["description", "aca no paso nada"], ["amount", "880.0"], ["created_at", "2022-01-21 14:21:06.283761"], ["updated_at", "2022-01-21 14:21:06.283761"]]
+  ↳ app/controllers/api/v1/payments_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:5:in `create'
+  Rendering api/v1/payments/show.json.jbuilder
+  Rendered api/v1/payments/_info.json.jbuilder (Duration: 0.5ms | Allocations: 127)
+  Rendered api/v1/payments/show.json.jbuilder (Duration: 1.7ms | Allocations: 562)
+Completed 200 OK in 28ms (Views: 5.0ms | ActiveRecord: 10.9ms | Allocations: 6560)
+
+
+>>>>>>> main
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 17:23:57 -0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/brunoparma/Desktop/Venmo/Venmo/app/controllers/api/v1/payments_controller.rb:42: syntax error, unexpected '}', expecting `end'
+...at '+ @payment.create_at.to_s }
+...                              ^
+):
+  
+app/controllers/api/v1/payments_controller.rb:42: syntax error, unexpected '}', expecting `end'
+app/controllers/api/v1/payments_controller.rb:42: syntax error, unexpected '}', expecting `end'
+app/controllers/api/v1/payments_controller.rb:42: syntax error, unexpected '}', expecting `end'
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 17:24:31 -0300
+  
+SyntaxError (/Users/brunoparma/Desktop/Venmo/Venmo/app/controllers/api/v1/payments_controller.rb:43: syntax error, unexpected '}', expecting `end'
+...at '+ @payment.create_at.to_s }
+...                              ^
+):
+  
+app/controllers/api/v1/payments_controller.rb:43: syntax error, unexpected '}', expecting `end'
+app/controllers/api/v1/payments_controller.rb:43: syntax error, unexpected '}', expecting `end'
+app/controllers/api/v1/payments_controller.rb:43: syntax error, unexpected '}', expecting `end'
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 17:24:36 -0300
+  
+SyntaxError (/Users/brunoparma/Desktop/Venmo/Venmo/app/controllers/api/v1/payments_controller.rb:43: syntax error, unexpected '}', expecting `end'
+...at '+ @payment.create_at.to_s }
+...                              ^
+):
+  
+app/controllers/api/v1/payments_controller.rb:43: syntax error, unexpected '}', expecting `end'
+app/controllers/api/v1/payments_controller.rb:43: syntax error, unexpected '}', expecting `end'
+app/controllers/api/v1/payments_controller.rb:43: syntax error, unexpected '}', expecting `end'
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 17:25:17 -0300
+Processing by Api::V1::PaymentsController#create as JSON
+  Parameters: {"payment"=>{"friend_id"=>5, "amount"=>880, "description"=>"aca no paso nada"}, "user_id"=>"1"}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mFriendship Load (6.0ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2[0m  [["user_id", 1], ["friend_id", 5]]
+  ↳ app/models/user.rb:29:in `friendships?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mPayment Create (1.4ms)[0m  [1m[32mINSERT INTO "payments" ("user_id", "friend_id", "description", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["friend_id", 5], ["description", "aca no paso nada"], ["amount", "880.0"], ["created_at", "2022-01-21 20:25:18.029914"], ["updated_at", "2022-01-21 20:25:18.029914"]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mAccount Load (1.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:28:in `send_money'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:29:in `send_money'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mAccount Update (0.9ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "89440.0"], ["updated_at", "2022-01-21 20:25:18.053305"], ["id", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (34.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mAccount Update (2.0ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "9690.0"], ["updated_at", "2022-01-21 20:25:18.062549"], ["id", 5]]
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+Completed 500 Internal Server Error in 150481ms (ActiveRecord: 89.0ms | Allocations: 261343)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create_feed'
+app/controllers/api/v1/payments_controller.rb:43:in `create_feed'
+app/controllers/api/v1/payments_controller.rb:9:in `create'
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 17:27:52 -0300
+Processing by Api::V1::PaymentsController#create as JSON
+  Parameters: {"payment"=>{"friend_id"=>5, "amount"=>880, "description"=>"aca no paso nada"}, "user_id"=>"1"}
+  [1m[36mUser Load (6.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (6.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mFriendship Load (6.2ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2[0m  [["user_id", 1], ["friend_id", 5]]
+  ↳ app/models/user.rb:29:in `friendships?'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (8.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mPayment Create (7.5ms)[0m  [1m[32mINSERT INTO "payments" ("user_id", "friend_id", "description", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["friend_id", 5], ["description", "aca no paso nada"], ["amount", "880.0"], ["created_at", "2022-01-21 20:27:54.095516"], ["updated_at", "2022-01-21 20:27:54.095516"]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (11.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mAccount Load (6.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:28:in `send_money'
+  [1m[36mUser Load (7.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mAccount Load (8.1ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:29:in `send_money'
+  [1m[36mTRANSACTION (7.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mAccount Update (7.5ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "88560.0"], ["updated_at", "2022-01-21 20:27:54.295932"], ["id", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (7.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (9.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mAccount Update (7.5ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "10570.0"], ["updated_at", "2022-01-21 20:27:54.346999"], ["id", 5]]
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mTRANSACTION (6.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+Completed 500 Internal Server Error in 18651ms (ActiveRecord: 195.8ms | Allocations: 12127638)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create_feed'
+app/controllers/api/v1/payments_controller.rb:43:in `create_feed'
+app/controllers/api/v1/payments_controller.rb:9:in `create'
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 17:28:23 -0300
+Processing by Api::V1::PaymentsController#create as JSON
+  Parameters: {"payment"=>{"friend_id"=>5, "amount"=>880, "description"=>"aca no paso nada"}, "user_id"=>"1"}
+  [1m[36mUser Load (6.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (6.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mFriendship Load (8.1ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2[0m  [["user_id", 1], ["friend_id", 5]]
+  ↳ app/models/user.rb:29:in `friendships?'
+  [1m[36mCACHE User Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (9.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mPayment Create (10.0ms)[0m  [1m[32mINSERT INTO "payments" ("user_id", "friend_id", "description", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["friend_id", 5], ["description", "aca no paso nada"], ["amount", "880.0"], ["created_at", "2022-01-21 20:28:24.818903"], ["updated_at", "2022-01-21 20:28:24.818903"]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (9.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mUser Load (8.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mAccount Load (6.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:28:in `send_money'
+  [1m[36mUser Load (6.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mAccount Load (7.0ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:29:in `send_money'
+  [1m[36mTRANSACTION (8.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mAccount Update (8.1ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "87680.0"], ["updated_at", "2022-01-21 20:28:25.037614"], ["id", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (7.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (7.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mAccount Update (8.0ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "11450.0"], ["updated_at", "2022-01-21 20:28:25.094591"], ["id", 5]]
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mTRANSACTION (7.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mUser Load (7.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+Completed 500 Internal Server Error in 970ms (ActiveRecord: 220.9ms | Allocations: 17871872)
+
+
+  
+NoMethodError (undefined method `feed' for #<User:0x0000000122a7b1d8>):
+  
+app/controllers/api/v1/payments_controller.rb:46:in `create_feed'
+app/controllers/api/v1/payments_controller.rb:9:in `create'
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 17:29:04 -0300
+Processing by Api::V1::PaymentsController#create as JSON
+  Parameters: {"payment"=>{"friend_id"=>5, "amount"=>880, "description"=>"aca no paso nada"}, "user_id"=>"1"}
+  [1m[36mUser Load (6.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mFriendship Load (7.3ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2[0m  [["user_id", 1], ["friend_id", 5]]
+  ↳ app/models/user.rb:30:in `friendships?'
+  [1m[36mCACHE User Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (9.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mPayment Create (10.3ms)[0m  [1m[32mINSERT INTO "payments" ("user_id", "friend_id", "description", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["friend_id", 5], ["description", "aca no paso nada"], ["amount", "880.0"], ["created_at", "2022-01-21 20:29:05.996421"], ["updated_at", "2022-01-21 20:29:05.996421"]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (8.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mUser Load (7.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mAccount Load (6.8ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:28:in `send_money'
+  [1m[36mUser Load (6.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mAccount Load (7.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:29:in `send_money'
+  [1m[36mTRANSACTION (8.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mAccount Update (9.8ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "86800.0"], ["updated_at", "2022-01-21 20:29:06.225603"], ["id", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (9.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (9.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mAccount Update (9.8ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "12330.0"], ["updated_at", "2022-01-21 20:29:06.286779"], ["id", 5]]
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mTRANSACTION (7.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mUser Load (8.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (8.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+Completed 500 Internal Server Error in 1088ms (ActiveRecord: 233.5ms | Allocations: 20840455)
+
+
+  
+NoMethodError (undefined method `feed' for #<User:0x0000000122dc08c0>
+Did you mean?  feeds):
+  
+app/controllers/api/v1/payments_controller.rb:46:in `create_feed'
+app/controllers/api/v1/payments_controller.rb:9:in `create'
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 17:29:38 -0300
+Processing by Api::V1::PaymentsController#create as JSON
+  Parameters: {"payment"=>{"friend_id"=>5, "amount"=>880, "description"=>"aca no paso nada"}, "user_id"=>"1"}
+  [1m[36mUser Load (7.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (7.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mFriendship Load (8.5ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2[0m  [["user_id", 1], ["friend_id", 5]]
+  ↳ app/models/user.rb:30:in `friendships?'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (11.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mPayment Create (10.5ms)[0m  [1m[32mINSERT INTO "payments" ("user_id", "friend_id", "description", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["friend_id", 5], ["description", "aca no paso nada"], ["amount", "880.0"], ["created_at", "2022-01-21 20:29:40.495160"], ["updated_at", "2022-01-21 20:29:40.495160"]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (9.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mUser Load (8.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mAccount Load (8.0ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:28:in `send_money'
+  [1m[36mUser Load (7.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mAccount Load (7.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:29:in `send_money'
+  [1m[36mTRANSACTION (10.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mAccount Update (10.2ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "85920.0"], ["updated_at", "2022-01-21 20:29:40.748158"], ["id", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (9.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mAccount Update (10.0ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "13210.0"], ["updated_at", "2022-01-21 20:29:40.814094"], ["id", 5]]
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mUser Load (7.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (8.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mCACHE User Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mTRANSACTION (12.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:46:in `create_feed'
+  [1m[36mFeed Create (13.5ms)[0m  [1m[32mINSERT INTO "feeds" ("user_id", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["description", "Bruno Parma send 880.0 to Tim Cook at Bruno Parma send 880.0 to Tim Cook at 2022-01-21 20:29:40 UTC"], ["created_at", "2022-01-21 20:29:41.047201"], ["updated_at", "2022-01-21 20:29:41.047201"]]
+  ↳ app/controllers/api/v1/payments_controller.rb:46:in `create_feed'
+  [1m[36mTRANSACTION (9.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:46:in `create_feed'
+  Rendering api/v1/payments/show.json.jbuilder
+  Rendered api/v1/payments/_info.json.jbuilder (Duration: 3.9ms | Allocations: 86026)
+  Rendered api/v1/payments/show.json.jbuilder (Duration: 17.2ms | Allocations: 300204)
+Completed 200 OK in 1143ms (Views: 42.0ms | ActiveRecord: 310.5ms | Allocations: 21138724)
+
+
+Started POST "/api/v1/users/1/payments" for 127.0.0.1 at 2022-01-21 17:43:56 -0300
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PaymentsController#create as JSON
+  Parameters: {"payment"=>{"friend_id"=>5, "amount"=>880, "description"=>"aca no paso nada"}, "user_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mFriendship Load (3.5ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2[0m  [["user_id", 1], ["friend_id", 5]]
+  ↳ app/models/user.rb:30:in `friendships?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mPayment Create (1.0ms)[0m  [1m[32mINSERT INTO "payments" ("user_id", "friend_id", "description", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["friend_id", 5], ["description", "aca no paso nada"], ["amount", "880.0"], ["created_at", "2022-01-21 20:43:56.654763"], ["updated_at", "2022-01-21 20:43:56.654763"]]
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:7:in `create'
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:28:in `send_money'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:24:in `friend'
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:29:in `send_money'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mAccount Update (0.6ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "85040.0"], ["updated_at", "2022-01-21 20:43:56.682728"], ["id", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:30:in `send_money'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mAccount Update (0.8ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", "14090.0"], ["updated_at", "2022-01-21 20:43:56.686654"], ["id", 5]]
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:31:in `send_money'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/payments_controller.rb:20:in `current_user'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:43:in `create_feed'
+  [1m[36mFeed Create (0.8ms)[0m  [1m[32mINSERT INTO "feeds" ("user_id", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["description", "Bruno Parma send 880.0 to Tim Cook at 2022-01-21 20:43:56 UTC"], ["created_at", "2022-01-21 20:43:56.708566"], ["updated_at", "2022-01-21 20:43:56.708566"]]
+  ↳ app/controllers/api/v1/payments_controller.rb:43:in `create_feed'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/payments_controller.rb:43:in `create_feed'
+  Rendering api/v1/payments/show.json.jbuilder
+  Rendered api/v1/payments/_info.json.jbuilder (Duration: 0.2ms | Allocations: 125)
+  Rendered api/v1/payments/show.json.jbuilder (Duration: 1.0ms | Allocations: 662)
+Completed 200 OK in 127ms (Views: 3.7ms | ActiveRecord: 42.2ms | Allocations: 44560)
+
+

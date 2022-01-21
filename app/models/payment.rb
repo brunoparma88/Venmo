@@ -1,7 +1,7 @@
 class Payment < ApplicationRecord
   MAX_AMOUNT = 1000
   MIN_AMOUNT = 0
-  belongs_to :user, class_name: :User
+  belongs_to :user
   belongs_to :friend, class_name: :User
   validates :amount,
             numericality: { greater_than_or_equal_to: MIN_AMOUNT,

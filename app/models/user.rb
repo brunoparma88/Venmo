@@ -14,7 +14,8 @@ class User < ApplicationRecord
 
   has_many :friend_as, through: :friendships_as_friend_b
   has_many :friend_bs, through: :friendships_as_friend_a
-  has_many :payment, dependent: :destroy
+  has_many :payments, dependent: :destroy
+  has_many :feeds, dependent: :destroy
   has_one  :account, dependent: :destroy
 
   def full_name
